@@ -1,0 +1,49 @@
+<div *ngIf="isLoading" class="loading-spinner">
+  <mat-progress-spinner></mat-progress-spinner>
+</div>
+<div *ngIf="!isLoading">
+<div class="week-selector-wrapper">
+    <div class="week-selector">
+      <button mat-icon-button (click)="changeWeek(-1)">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+  
+      <span>Week {{ currentWeekNumber }} of {{ currentYear }}</span>
+  
+      <button mat-icon-button (click)="changeWeek(1)">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+  <div class="schedule-container">
+    <h1>Weekly Schedule</h1>
+  
+    <mat-table [dataSource]="employees" class="mat-elevation-z8">
+      <ng-container matColumnDef="employee">
+        <mat-header-cell *matHeaderCellDef> Employee </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{ employee.name }} </mat-cell>
+      </ng-container>
+  
+    <ng-container *ngFor="let day of daysOfWeek" [matColumnDef]="day">
+      <mat-header-cell *matHeaderCellDef> {{ day | date: 'EEE' }} </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <div class="cell-container">
+          <div class="shifts">
+            <button button mat-stroked-button *ngFor="let shift of getShiftsForDay(employee, day)" class="shift" (click)="navigateToEditShift(shift.id)">
+              [{{ shift.employeeRole.name }} {{ shift.startTime | date: 'shortTime' }} - {{ shift.endTime | date: 'shortTime' }}]
+            </button>
+          </div>
+          <button mat-icon-button (click)="navigateToAddShift(employee.id, day)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
+  
