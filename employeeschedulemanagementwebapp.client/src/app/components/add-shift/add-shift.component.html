@@ -1,0 +1,37 @@
+<form [formGroup]="shiftForm" (ngSubmit)="onSubmit()" class="shift-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Employee Role</mat-label>
+    <!-- <mat-select formControlName="employeeRole">
+      <mat-option *ngFor="let role of allEmployeeRoles" [value]="role?.id">
+        {{ role.name }}
+      </mat-option>
+    </mat-select> -->
+    <mat-error *ngIf="shiftForm.get('employeeRole').hasError('required')">
+      Employee Role is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Start Time</mat-label>
+    <input matInput [matDatepicker]="startTimePicker" formControlName="startTime">
+    <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startTimePicker></mat-datepicker>
+    <!-- <mat-error *ngIf="shiftForm.get('startTime').hasError('required')">
+      Start Time is required.
+    </mat-error> -->
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>End Time</mat-label>
+    <input matInput [matDatepicker]="endTimePicker" formControlName="endTime">
+    <mat-datepicker-toggle matSuffix [for]="endTimePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endTimePicker></mat-datepicker>
+    <!-- <mat-error *ngIf="shiftForm.get('endTime').hasError('required')">
+      End Time is required.
+    </mat-error> -->
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="shiftForm.invalid">
+    Add Shift
+  </button>
+</form>

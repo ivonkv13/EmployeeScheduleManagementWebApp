@@ -1,0 +1,46 @@
+.week-selector-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Space between buttons and table */
+  }
+  
+  .week-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons and week text */
+  }
+  
+  .week-selector button {
+    margin: 0 10px;
+  }
+  
+  .schedule-container {
+    margin: 20px;
+  }
+  
+  .mat-table {
+    width: 100%;
+  }
+  
+  .cell-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 8px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .shifts {
+    display: flex;
+    flex-direction: column; 
+    gap: 4px;
+  }
+  
+  .shift {
+    font-size: 14px; 
+  }
+  
+  button {
+    margin-top: 8px;
+  }
